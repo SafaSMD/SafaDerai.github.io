@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safa Derai — Data Analyst & Cheffe de Projet Data</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-alt:#f4f7fa;
+    --card:#ffffff;
+    --border:#e3e8ef;
+    --text:#161a20;
+    --text-dim:#59637a;
+    --accent:#0d9488;
+    --accent-2:#4c63d2;
+    --accent-soft:rgba(13,148,136,0.09);
+    --shadow:0 1px 3px rgba(16,24,40,0.05), 0 1px 2px rgba(16,24,40,0.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .container{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1080px;margin:0 auto;
+  }
+  .logo{font-weight:700;font-size:1.1rem;letter-spacing:0.5px;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{font-size:0.92rem;color:var(--text-dim);transition:color .2s;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:#ffffff;padding:8px 18px;border-radius:8px;
+    font-weight:600;font-size:0.88rem;
+  }
+  .burger{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;}
+
+  @media (max-width:860px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--bg-alt);
+      flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border);
+      transform:translateY(-150%);transition:transform .25s;}
+    .nav-links.open{transform:translateY(0);}
+    .burger{display:block;}
+    .nav-cta{display:none;}
+  }
+
+  /* HERO */
+  .hero{
+    padding:90px 0 70px;
+    background:radial-gradient(circle at 15% 20%, rgba(125,211,192,0.10), transparent 45%),
+               radial-gradient(circle at 85% 0%, rgba(142,169,247,0.10), transparent 40%);
+  }
+  .hero-inner{display:flex;align-items:center;gap:56px;flex-wrap:wrap;}
+  .hero-text{flex:1 1 420px;}
+  .eyebrow{
+    display:inline-block;color:var(--accent);font-size:0.82rem;font-weight:600;
+    letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;
+    padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:var(--accent-soft);
+  }
+  h1{font-size:2.6rem;font-weight:800;line-height:1.15;margin-bottom:16px;}
+  h1 .highlight{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero-desc{color:var(--text-dim);font-size:1.05rem;max-width:520px;margin-bottom:28px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:12px 22px;border-radius:9px;font-weight:600;font-size:0.92rem;
+    border:1px solid transparent;cursor:pointer;transition:transform .15s, opacity .15s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--accent);color:#ffffff;}
+  .btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text);}
+  .hero-photo{
+    flex:0 0 220px;width:220px;height:220px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    padding:4px;
+  }
+  .hero-photo-inner{
+    width:100%;height:100%;border-radius:50%;background:var(--bg-alt);
+    display:flex;align-items:center;justify-content:center;
+    font-size:3.2rem;font-weight:800;color:var(--accent);
+    overflow:hidden;
+  }
+  .hero-photo-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+  .contact-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:0.9rem;color:var(--text-dim);}
+  .contact-row a{display:flex;align-items:center;gap:6px;transition:color .2s;}
+  .contact-row a:hover{color:var(--accent);}
+
+  /* SECTION SHARED */
+  section{padding:70px 0;}
+  .section-label{
+    color:var(--accent);font-size:0.8rem;font-weight:700;letter-spacing:1.5px;
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  .section-title{font-size:1.9rem;font-weight:800;margin-bottom:36px;}
+  .alt{background:var(--bg-alt);}
+
+  /* ABOUT */
+  .about-text{color:var(--text-dim);font-size:1.02rem;max-width:760px;margin-bottom:30px;}
+  .soft-skills{display:flex;flex-wrap:wrap;gap:10px;}
+  .pill{
+    background:var(--card);border:1px solid var(--border);padding:8px 16px;
+    border-radius:20px;font-size:0.85rem;color:var(--text);
+  }
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:28px;border-left:2px solid var(--border);}
+  .tl-item{position:relative;padding-bottom:42px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;left:-35px;top:4px;width:12px;height:12px;
+    border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);
+  }
+  .tl-role{font-size:1.12rem;font-weight:700;}
+  .tl-org{color:var(--accent-2);font-weight:600;font-size:0.95rem;margin-top:2px;}
+  .tl-date{color:var(--text-dim);font-size:0.83rem;margin:4px 0 12px;text-transform:uppercase;letter-spacing:0.5px;}
+  .tl-list{list-style:none;color:var(--text-dim);font-size:0.93rem;}
+  .tl-list li{position:relative;padding-left:18px;margin-bottom:8px;}
+  .tl-list li::before{content:'—';position:absolute;left:0;color:var(--accent);}
+  .tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .tag{background:var(--accent-soft);color:var(--accent);font-size:0.75rem;padding:4px 10px;border-radius:6px;font-weight:600;}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;}
+  .skill-card h3{font-size:0.98rem;margin-bottom:14px;color:var(--accent);}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tags span{background:var(--bg-alt);border:1px solid var(--border);padding:5px 11px;border-radius:6px;font-size:0.8rem;color:var(--text-dim);}
+
+  .skill-card,.project-card,.featured,.edu-item,.cert-item,.lang-item,.pill{box-shadow:var(--shadow);}
+  .project-card:hover{box-shadow:0 8px 20px rgba(16,24,40,0.08);}
+
+  /* FEATURED PROJECT */
+  .featured{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:34px;margin-bottom:26px;position:relative;overflow:hidden;
+  }
+  .featured::after{
+    content:'';position:absolute;top:0;right:0;width:280px;height:280px;
+    background:radial-gradient(circle,rgba(125,211,192,0.10),transparent 70%);
+    pointer-events:none;
+  }
+  .featured-badge{
+    display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#ffffff;font-size:0.7rem;font-weight:800;letter-spacing:1px;
+    padding:4px 11px;border-radius:5px;margin-bottom:14px;text-transform:uppercase;
+  }
+  .featured h3{font-size:1.5rem;margin-bottom:6px;}
+  .featured .sub{color:var(--accent-2);font-size:0.9rem;font-weight:600;margin-bottom:18px;}
+  .featured p{color:var(--text-dim);font-size:0.95rem;margin-bottom:20px;max-width:760px;}
+  .feat-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;margin-bottom:22px;}
+  .feat-col h4{font-size:0.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+  .feat-col ul{list-style:none;color:var(--text-dim);font-size:0.88rem;}
+  .feat-col li{position:relative;padding-left:16px;margin-bottom:7px;}
+  .feat-col li::before{content:'▹';position:absolute;left:0;color:var(--accent);}
+
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+  .project-card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:26px;transition:transform .2s, border-color .2s;
+  }
+  .project-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+  .project-num{color:var(--text-dim);font-size:0.78rem;font-weight:700;letter-spacing:1px;margin-bottom:10px;}
+  .project-card h3{font-size:1.08rem;margin-bottom:10px;line-height:1.35;}
+  .project-card p{color:var(--text-dim);font-size:0.88rem;margin-bottom:14px;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .project-tags span{background:var(--accent-soft);color:var(--accent);font-size:0.72rem;padding:4px 9px;border-radius:6px;font-weight:600;}
+
+  /* EDUCATION */
+  .edu-grid{display:flex;flex-direction:column;gap:18px;}
+  .edu-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;}
+  .edu-item h3{font-size:1rem;}
+  .edu-item .org{color:var(--accent-2);font-size:0.88rem;margin-top:3px;}
+  .edu-date{color:var(--text-dim);font-size:0.83rem;white-space:nowrap;}
+
+  /* CERTS */
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .cert-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-size:0.9rem;display:flex;align-items:center;gap:10px;}
+  .cert-item .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:0 0 auto;}
+
+  /* LANGUAGES */
+  .lang-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+  .lang-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+  .lang-item .lname{font-weight:700;font-size:0.95rem;margin-bottom:6px;}
+  .lang-item .llevel{color:var(--accent);font-size:0.8rem;font-weight:600;}
+
+  /* CONTACT / FOOTER */
+  footer{padding:60px 0 40px;text-align:center;}
+  footer h2{font-size:1.6rem;font-weight:800;margin-bottom:14px;}
+  footer p{color:var(--text-dim);margin-bottom:26px;}
+  .foot-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:30px;}
+  .foot-note{color:var(--text-dim);font-size:0.8rem;border-top:1px solid var(--border);padding-top:24px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Safa<span>.</span>Derai</div>
+    <button class="burger" id="burgerBtn" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#experience">Expérience</a></li>
+      <li><a href="#skills">Compétences</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#memoire">Mémoire</a></li>
+      <li><a href="#education">Formation</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="mailto:deraisafaa@gmail.com">Me contacter</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <span class="eyebrow">Master MIAGE — Université Paris Cité</span>
+      <h1>Safa Derai<br><span class="highlight">Data Analyst & Cheffe de Projet Data</span></h1>
+      <p class="hero-desc">
+        Spécialisée dans le pilotage de projets Data et la visualisation, j'interviens sur la structuration,
+        l'analyse et l'automatisation des flux de données. Mon parcours en MIAGE me permet de
+        traduire des besoins métier complexes en solutions techniques concrètes et sécurisées.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">Voir mes projets</a>
+        <a class="btn btn-secondary" href="#contact">Discutons</a>
+      </div>
+      <div class="contact-row">
+        <a href="mailto:deraisafaa@gmail.com">✉️ deraisafaa@gmail.com</a>
+        <a href="tel:0755273129">📞 07 55 27 31 29</a>
+        <a href="https://www.linkedin.com/in/safa-derai/" target="_blank" rel="noopener">💼 LinkedIn</a>
+        <span>📍 Île-de-France</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-inner">SD</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">À propos</div>
+    <h2 class="section-title">Qui je suis</h2>
+    <p class="about-text">
+      Diplômée du Master MIAGE (Méthodes Informatiques Appliquées à la Gestion des Entreprises) à
+      l'Université Paris Cité, je combine expertise technique en data (Python, BI, bases de données)
+      et compétences en gestion de projet et en systèmes d'information (ERP, CRM, BI). Cette double
+      casquette me permet de faire le lien entre les besoins métier et les solutions informatiques :
+      j'ai piloté des projets data à l'international chez Orange Business, développé des applications
+      de visualisation de données chez TotalEnergies et conduit la refonte d'un outil de gestion
+      commerciale vers l'ERP Sage X3 pour une entreprise industrielle.
+    </p>
+    <div class="soft-skills">
+      <span class="pill">🤝 Travail en équipe</span>
+      <span class="pill">🎯 Rigueur</span>
+      <span class="pill">🧭 Sens de l'organisation</span>
+      <span class="pill">💬 Communication</span>
+      <span class="pill">🔍 Curiosité</span>
+      <span class="pill">🔄 Capacité d'adaptation</span>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="alt">
+  <div class="container">
+    <div class="section-label">Parcours</div>
+    <h2 class="section-title">Expérience professionnelle</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-role">Data Analyst & Cheffe de Projet</div>
+        <div class="tl-org">Orange Business</div>
+        <div class="tl-date">2023 — 2025</div>
+        <ul class="tl-list">
+          <li>Pilotage en autonomie du projet de qualité de données et performance des offres, de la formalisation du besoin à la livraison finale, en méthodologie SAFe</li>
+          <li>Coordination transverse quotidienne avec une équipe de 15 personnes à l'international (Inde, Égypte, Île Maurice), travail en anglais</li>
+          <li>Accompagnement des Product Owners (PO) et Service Lifecycle Managers (SLM) dans la définition de leurs besoins</li>
+          <li>Conception et mise en place de workflows de traitement des flux de données</li>
+          <li>Extraction et traitement de volumes importants de données via Dataiku et la suite ELK (Elasticsearch, Logstash, Kibana)</li>
+          <li>Conception de tableaux de bord complexes sous Power BI et Qlik pour le suivi des KPIs et la revue trimestrielle des services</li>
+          <li>Déploiement et mise à disposition des dashboards Power BI auprès des équipes métier</li>
+          <li>Formation des utilisateurs à la lecture, à l'exploitation et au suivi des indicateurs de performance</li>
+          <li>Rédaction du manuel d'utilisation et de la documentation d'accompagnement</li>
+          <li>Collaboration avec l'équipe SMART pour l'automatisation et la mise en production des flux de données</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tag">Power BI</span><span class="tag">Qlik</span><span class="tag">Dataiku</span>
+          <span class="tag">ELK Stack</span><span class="tag">SAFe</span><span class="tag">Qualité de données</span>
+          <span class="tag">Formation utilisateurs</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-role">Développeuse Visualisation de Données sous Python (Stage)</div>
+        <div class="tl-org">TotalEnergies</div>
+        <div class="tl-date">Mai — Août 2023</div>
+        <ul class="tl-list">
+          <li>Collecte et formalisation des besoins des utilisateurs</li>
+          <li>Aide à la définition d'indicateurs clés pour contrôler la qualité des modèles</li>
+          <li>Proposition et conception de tableaux de bord, graphiques et tables</li>
+          <li>Création d'interfaces interactives avec Dash (Python), intégrant HTML et JavaScript</li>
+          <li>Manipulation de datasets complexes avec Pandas et visualisations avancées avec Plotly, Matplotlib et Seaborn</li>
+          <li>Versionning du code et documentation technique via GitHub</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tag">Python</span><span class="tag">Dash</span><span class="tag">Pandas</span>
+          <span class="tag">Plotly</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+          <span class="tag">Excel VBA</span><span class="tag">GitHub</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-role">Enseignante — Cours particuliers (Collège)</div>
+        <div class="tl-org">Indépendante</div>
+        <div class="tl-date">2021 — 2023</div>
+        <ul class="tl-list">
+          <li>Cours particuliers en Mathématiques, Physique et SVT auprès d'élèves de collège</li>
+          <li>Rappels de cours structurés et création de fiches de révision synthétisant l'essentiel à retenir</li>
+          <li>Conception d'exercices d'entraînement adaptés au niveau et aux difficultés de chaque élève</li>
+          <li>Correction détaillée et accompagnement dans la compréhension des erreurs</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tag">Pédagogie</span><span class="tag">Vulgarisation</span><span class="tag">Suivi individualisé</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Boîte à outils</div>
+    <h2 class="section-title">Compétences techniques</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Business Intelligence & Reporting</h3>
+        <div class="skill-tags">
+          <span>Power BI</span><span>Qlik</span><span>Crystal Reports</span>
+          <span>Tableaux de bord</span><span>Définition & suivi de KPI</span><span>Excel (expert)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Data Engineering & traitement</h3>
+        <div class="skill-tags">
+          <span>Dataiku</span><span>Talend (ETL)</span><span>ELK (Elasticsearch, Logstash, Kibana)</span>
+          <span>Pandas</span><span>NumPy</span><span>Workflows de données</span><span>Automatisation des flux</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Data Science & Machine Learning</h3>
+        <div class="skill-tags">
+          <span>scikit-learn</span><span>Régression logistique</span><span>Random Forest</span>
+          <span>XGBoost</span><span>CNN / Deep Learning</span><span>Classification d'images</span>
+          <span>Prétraitement & feature selection</span><span>Évaluation de modèles</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Visualisation de données</h3>
+        <div class="skill-tags">
+          <span>Dash</span><span>Plotly</span><span>Matplotlib</span><span>Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Bases de données</h3>
+        <div class="skill-tags">
+          <span>SQL</span><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span>
+          <span>DBeaver</span><span>PgAdmin</span><span>MongoDB Compass</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Langages & frameworks</h3>
+        <div class="skill-tags">
+          <span>Python</span><span>Java 17</span><span>JavaScript</span><span>HTML/CSS</span>
+          <span>PHP</span><span>C</span><span>Spring Boot</span><span>Django</span>
+          <span>React</span><span>React Native</span><span>Expo</span><span>Node.js / Express</span>
+          <span>Firebase</span><span>Gradle</span><span>API REST</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>DevOps & Architecture</h3>
+        <div class="skill-tags">
+          <span>Docker</span><span>Docker Hub</span><span>Kubernetes</span><span>Microservices</span>
+          <span>API Gateway</span><span>Git (GitHub / GitLab)</span><span>Postman</span><span>VS Code</span>
+          <span>Sécurité applicative</span><span>Réseaux</span><span>Wireshark</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>ERP & Systèmes d'information</h3>
+        <div class="skill-tags">
+          <span>SAP</span><span>Sage X3</span><span>Sage Ligne 100</span><span>CRM</span>
+          <span>Paramétrage ERP</span><span>Workflows de validation</span>
+          <span>Web Services REST / SOAP</span><span>Interfaçage XML / CSV</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Modélisation & conception</h3>
+        <div class="skill-tags">
+          <span>UML</span><span>BPMN</span><span>Modélisation de processus</span>
+          <span>StarUML</span><span>Lucidchart</span><span>Figma</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Gestion de projet & méthodes</h3>
+        <div class="skill-tags">
+          <span>Agile / Scrum</span><span>SAFe</span><span>Kanban</span>
+          <span>Recueil de besoins</span><span>Cahier des charges</span><span>Spécifications fonctionnelles</span>
+          <span>Interface MOA-MOE</span><span>Chiffrage & planning Gantt</span>
+          <span>Formation utilisateurs</span><span>Documentation & manuels</span>
+          <span>Notion</span><span>Kantree</span><span>Suite Office</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Gouvernance & conformité</h3>
+        <div class="skill-tags">
+          <span>Qualité de données</span><span>Gouvernance des données</span><span>RGPD</span>
+          <span>Gouvernance de l'IA</span><span>AI Act</span><span>IA responsable & éthique</span>
+          <span>Protection des données personnelles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="alt">
+  <div class="container">
+    <div class="section-label">Réalisations</div>
+    <h2 class="section-title">Projets</h2>
+
+    <div class="featured">
+      <span class="featured-badge">Projet phare · Data & IA</span>
+      <h3>Détection du SOPK — Analyse BI & Machine Learning</h3>
+      <div class="sub">Projet Data / IA appliqué à la santé · Équipe de 3 · Master MIAGE, Université Paris Cité</div>
+      <p>
+        Le syndrome des ovaires polykystiques touche une femme sur dix et constitue la première cause
+        d'infertilité féminine, mais reste difficile à diagnostiquer. Le projet explore comment les outils
+        de Business Intelligence et d'apprentissage automatique peuvent améliorer sa détection, en
+        exploitant deux sources de données hétérogènes : un jeu de données cliniques (541 patientes,
+        45 variables) et une base de 3 856 images d'échographies ovariennes.
+      </p>
+      <div class="feat-cols">
+        <div class="feat-col">
+          <h4>Volet Business Intelligence</h4>
+          <ul>
+            <li>Benchmark des outils BI (Power BI, Tableau, QlikView) et choix argumenté de Power BI</li>
+            <li>Intégration et préparation des données cliniques</li>
+            <li>Création de visualisations interactives (taux de SOPK par âge, par IMC…)</li>
+            <li>Structuration de rapports et interprétation des tendances</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Machine Learning — données cliniques</h4>
+          <ul>
+            <li>Prétraitement Python : nettoyage, normalisation des colonnes, traitement des valeurs manquantes et des types incohérents</li>
+            <li>Sélection de variables cliniques pertinentes (âge, IMC, pilosité, cycle, follicules, endomètre…)</li>
+            <li>Modèle de régression logistique (scikit-learn), split 75/25, reproductibilité fixée</li>
+            <li>Évaluation : matrice de confusion, précision, rappel, F1-score — <strong>accuracy de 0,86</strong></li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Deep Learning — imagerie médicale</h4>
+          <ul>
+            <li>Prétraitement et normalisation des images échographiques</li>
+            <li>Construction d'un réseau de neurones convolutifs (convolution, pooling, couches denses)</li>
+            <li>Entraînement sur un split 80/20 et classification ovaire sain / atteint</li>
+            <li>Résultat : <strong>98,48 % de précision</strong> sur l'ensemble de test</li>
+            <li>Synthèse comparative de l'apport de chaque approche (BI, ML clinique, ML imagerie)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>Python</span><span>Pandas</span><span>scikit-learn</span><span>Régression logistique</span>
+        <span>CNN / Deep Learning</span><span>Power BI</span><span>Data cleaning</span>
+        <span>Classification d'images</span><span>Santé</span>
+      </div>
+    </div>
+
+    <div class="featured">
+      <span class="featured-badge">Projet phare · ERP</span>
+      <h3>Intégration Sage X3 — Refonte de l'outil de gestion commerciale d'ALLAVIL</h3>
+      <div class="sub">Projet ERP en entreprise · Cheffe de projet & Conception · Équipe de 4 · M2 MIAGE, Université Paris Cité</div>
+      <p>
+        ALLAVIL, spécialiste de l'assemblage et de la distribution de systèmes mécaniques, s'appuyait sur
+        un logiciel développé en interne devenu inadapté à sa croissance et dépendant de ressources internes.
+        Le projet a consisté à conduire la refonte complète de son outil de gestion commerciale vers l'ERP
+        <strong>Sage X3</strong> : analyse des processus métier, confrontation des besoins aux fonctionnalités
+        de l'ERP, paramétrage de la solution cible et intégration avec l'existant (comptabilité Sage Ligne 100
+        et CRM commercial). Projet mené sur 22 semaines pour un volume d'environ 120 heures.
+      </p>
+      <div class="feat-cols">
+        <div class="feat-col">
+          <h4>Mon rôle</h4>
+          <ul>
+            <li>Cheffe de projet : coordination générale de l'équipe de 4</li>
+            <li>Suivi du planning et de l'avancement des livrables</li>
+            <li>Animation des réunions hebdomadaires et des ateliers de conception</li>
+            <li>Analyse fonctionnelle : devis, facturation, référentiels client & articles</li>
+            <li>Paramétrage des habilitations utilisateurs et de l'interface CRM</li>
+            <li>Rédaction du cahier des charges et des spécifications fonctionnelles</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Périmètre fonctionnel</h4>
+          <ul>
+            <li>Devis multi-modèles (France / Export) et impression multilingue</li>
+            <li>Facturation : avoirs, gestion des devises, personnalisation des modèles</li>
+            <li>Référentiels client, articles et fournisseurs, familles statistiques</li>
+            <li>Processus de gestion des achats et des stocks</li>
+            <li>Habilitations et profils utilisateurs</li>
+            <li>Requêtes, états et éditions personnalisées sous Crystal Reports</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Points techniques clés</h4>
+          <ul>
+            <li>Interfaçage CRM ↔ ERP : modèles d'import/export CSV & XML, Web Services REST / SOAP</li>
+            <li>Workflow de validation des factures d'achat : déclenchement conditionnel (devise différente ou montant &gt; 10 000 €)</li>
+            <li>Circuit d'approbation gradué N+1 / N+2 selon l'enjeu financier, avec délégation et accusé de lecture</li>
+            <li>Plan de travail de suivi des validations (workflows non lus/non signés vs. traités)</li>
+            <li>Compatibilité assurée avec la comptabilité Sage Ligne 100</li>
+            <li>Chiffrage des charges en heures par tâche et planning Gantt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>Sage X3</span><span>ERP</span><span>Sage Ligne 100</span><span>Workflow</span>
+        <span>Web Services REST/SOAP</span><span>XML / CSV</span><span>Crystal Reports</span>
+        <span>CRM</span><span>Cahier des charges</span><span>Agile</span><span>Notion</span>
+      </div>
+    </div>
+
+    <div class="featured">
+      <span class="featured-badge">Projet phare · Développement web</span>
+      <h3>Carbon Intensity Balancing (CIB)</h3>
+      <div class="sub">Application web éco-responsable · Cheffe de projet & intermédiaire MOA–MOE · Équipe de 4 · Université Paris Cité</div>
+      <p>
+        Application web permettant de surveiller en temps réel l'intensité carbone de l'électricité
+        par zone géographique, afin de suspendre, reporter ou délocaliser les traitements informatiques
+        énergivores vers les moments et les lieux les moins émetteurs de CO₂. Le projet répond à un
+        double enjeu : optimiser la consommation énergétique des systèmes d'information et sensibiliser
+        les utilisateurs à l'éco-responsabilité numérique.
+      </p>
+      <div class="feat-cols">
+        <div class="feat-col">
+          <h4>Mon rôle</h4>
+          <ul>
+            <li>Coordination du projet et suivi de l'avancement sur 16 semaines</li>
+            <li>Intermédiaire MOA–MOE : communication entre les besoins métier et l'équipe technique</li>
+            <li>Rédaction des spécifications fonctionnelles et techniques, garantissant la bonne compréhension des besoins par les développeurs</li>
+            <li>Élaboration des diagrammes de conception (UML : classes, séquences, cas d'usage)</li>
+            <li>Production et formalisation des livrables projet</li>
+            <li>Organisation Agile : Kanban sous Notion, points hebdomadaires, planning Gantt</li>
+            <li>Adaptation de l'organisation face à une équipe réduite et à l'absence d'un membre</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Fonctionnalités</h4>
+          <ul>
+            <li>Carte interactive : consultation de l'intensité carbone par localisation</li>
+            <li>Comparaison multi-pays et historique de l'empreinte carbone</li>
+            <li>Prévisions d'intensité carbone sur les prochaines 24 h</li>
+            <li>Répartition des sources de production d'électricité par zone</li>
+            <li>Recommandations de délocalisation des traitements intensifs</li>
+            <li>Inscription / connexion sécurisées</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Stack technique</h4>
+          <ul>
+            <li>Back-end : Node.js, Express.js, PassportJS</li>
+            <li>Front-end : React, HTML/CSS/JavaScript (SPA)</li>
+            <li>Base de données : MongoDB (hash BCrypt)</li>
+            <li>API externes : ElectricityMap, RTE, Google Maps</li>
+            <li>Sécurité : Helmet, CORS, HTTPS, rate limiting anti-DDoS</li>
+            <li>Conception : UML (StarUML), maquettage Figma</li>
+            <li>Versionning & tests : GitLab, tests unitaires et d'intégration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span>
+        <span>API REST</span><span>Google Maps</span><span>ElectricityMap</span>
+        <span>Agile</span><span>UML</span><span>Figma</span><span>GitLab</span>
+      </div>
+    </div>
+
+    <div class="featured">
+      <span class="featured-badge">Projet phare · Mobile</span>
+      <h3>SkyScope — Application mobile d'alertes météo</h3>
+      <div class="sub">Application mobile cross-platform · Développement en binôme · M1 MIAGE, Université Paris Cité</div>
+      <p>
+        Application mobile de suivi météo permettant à chaque utilisateur de définir ses propres seuils
+        d'alerte (température, humidité, vitesse du vent, indice UV, pollen) et de recevoir une notification
+        dès qu'une condition est dépassée. Développée en React Native avec Expo, elle s'appuie sur l'API
+        OpenWeather pour les données en temps réel et sur Firebase pour l'authentification, le stockage
+        des préférences et l'envoi des notifications push.
+      </p>
+      <div class="feat-cols">
+        <div class="feat-col">
+          <h4>Fonctionnalités</h4>
+          <ul>
+            <li>Inscription et connexion sécurisées</li>
+            <li>Météo du jour et prévisions horaires</li>
+            <li>Recherche météo par ville</li>
+            <li>Configuration personnalisée des seuils d'alerte</li>
+            <li>Notifications push déclenchées au dépassement de seuil</li>
+            <li>Synchronisation du compte sur tous les appareils</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Conception & développement</h4>
+          <ul>
+            <li>Modélisation UML : diagrammes de classes et de séquence (Lucidchart)</li>
+            <li>Architecture par composants React (écrans Auth, Home, Config, Recherche, Monitoring)</li>
+            <li>Gestion d'état avec les hooks (useState, useEffect)</li>
+            <li>Gestion des exceptions et des données manquantes (optional chaining)</li>
+            <li>Normalisation des unités de mesure et des fuseaux horaires</li>
+            <li>Versionning GitHub / GitLab</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Stack technique</h4>
+          <ul>
+            <li>React Native &amp; Expo</li>
+            <li>Node.js, JavaScript</li>
+            <li>Firebase Authentication</li>
+            <li>Firebase Cloud Messaging (notifications)</li>
+            <li>API OpenWeather</li>
+            <li>VS Code, Lucidchart</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>React Native</span><span>Expo</span><span>JavaScript</span><span>Firebase</span>
+        <span>Cloud Messaging</span><span>API OpenWeather</span><span>UML</span><span>GitHub</span>
+      </div>
+    </div>
+
+    <div class="featured">
+      <span class="featured-badge">Projet phare · DevOps</span>
+      <h3>Architecture microservices & DevOps — Application de réservation de magazines</h3>
+      <div class="sub">Projet DevOps & microservices</div>
+      <p>
+        Développement d'une mini-application de réservation de magazines servant de support à la mise en
+        pratique d'une chaîne DevOps complète : du code au cluster. Le projet a été construit de façon
+        incrémentale — un premier service conteneurisé et déployé, puis une gateway, un second microservice,
+        et enfin la persistance en base — afin de couvrir l'ensemble du cycle de vie d'une architecture
+        distribuée.
+      </p>
+      <div class="feat-cols">
+        <div class="feat-col">
+          <h4>Fonctionnalités</h4>
+          <ul>
+            <li>Consultation de la liste des magazines</li>
+            <li>Affichage du détail par identifiant</li>
+            <li>Mise à jour des informations (ex. changement de statut « disponible »)</li>
+            <li>Suppression d'un magazine</li>
+            <li>API REST CRUD complète</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Déroulement du projet</h4>
+          <ul>
+            <li><strong>1.</strong> Développement du service backend en Java / Spring Boot, création d'une image Docker et publication sur Docker Hub, puis déploiement sur Kubernetes (Deployment + Service)</li>
+            <li><strong>2.</strong> Mise en place d'une gateway pour centraliser et router les requêtes, configuration des routes</li>
+            <li><strong>3.</strong> Ajout d'un second microservice et gestion de la communication inter-services via la gateway</li>
+            <li><strong>4.</strong> Intégration de PostgreSQL : connexion au service principal, persistance des données, visualisation via DBeaver et PgAdmin</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Compétences mises en œuvre</h4>
+          <ul>
+            <li>Conception d'une architecture microservices</li>
+            <li>Conteneurisation complète d'un service avec Docker</li>
+            <li>Déploiement Kubernetes (pods, services, configurations)</li>
+            <li>Paramétrage d'une API Gateway</li>
+            <li>Manipulation avancée de PostgreSQL</li>
+            <li>Maîtrise du cycle complet : code → build → container → cluster</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>Java 17</span><span>Spring Boot</span><span>Gradle</span><span>PostgreSQL</span>
+        <span>Docker</span><span>Docker Hub</span><span>Kubernetes</span><span>API Gateway</span>
+        <span>Microservices</span><span>DBeaver</span><span>PgAdmin</span>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-num">MACHINE LEARNING</div>
+        <h3>Challenge Crédit Agricole Assurances</h3>
+        <p>Prédiction de primes d'assurance via Machine Learning (Random Forest, XGBoost) : optimisation des prédictions et analyse de sinistralité.</p>
+        <div class="project-tags"><span>Python</span><span>Random Forest</span><span>XGBoost</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">IA · ÉQUIPE DE 3</div>
+        <h3>Interface d'annotation pour le Visual Question Answering</h3>
+        <p>
+          Plateforme web d'annotation pour le VQA, tâche consistant à extraire de l'information depuis des
+          images via des requêtes en langage naturel. Elle comprend une interface administrateur (ajout
+          d'images à annoter, statistiques, export des annotations) et une interface utilisateur avec deux
+          modes : poser ou répondre à des questions sur une image choisie, ou compléter les réponses de
+          couples image/question présentés automatiquement.
+        </p>
+        <div class="project-tags"><span>IA</span><span>Django</span><span>Python</span><span>HTML/CSS</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">BASES DE DONNÉES · ÉQUIPE DE 4</div>
+        <h3>Implémentation d'un mini SGBDR</h3>
+        <p>
+          Implémentation d'un système de gestion de bases de données relationnelles simplifié, à base unique
+          et mono-utilisateur. Le moteur interprète des commandes dans un langage épuré mais fidèle aux
+          opérations SQL réelles (insertion, sélection…) et met en œuvre les différentes couches d'un SGBD.
+        </p>
+        <div class="project-tags"><span>Java</span><span>SQL</span><span>Moteur de requêtes</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">GESTION SI · CHEFFE DE PROJET, ÉQUIPE DE 5</div>
+        <h3>Transformation du SI d'une entreprise textile</h3>
+        <p>
+          Analyse du système d'information existant d'une entreprise de textile, puis proposition de
+          solutions organisationnelles, fonctionnelles et informatiques (CRM, ERP, BI) destinées à améliorer
+          ses performances et sa productivité.
+        </p>
+        <div class="project-tags"><span>CRM</span><span>ERP</span><span>BI</span><span>Urbanisation SI</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">PROGRAMMATION AVANCÉE</div>
+        <h3>Moteur de résolution de débat</h3>
+        <p>
+          Modélisation de débats simples et conception d'une méthode de résolution automatique, appliquée
+          aux situations de choix du quotidien comme aux controverses publiques : représentation des
+          arguments, de leurs relations et détermination des positions défendables.
+        </p>
+        <div class="project-tags"><span>Java</span><span>Modélisation</span><span>Algorithmique</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">MOBILE</div>
+        <h3>Application mobile de covoiturage</h3>
+        <p>Développement d'une application mobile dédiée à la mise en relation pour le covoiturage.</p>
+        <div class="project-tags"><span>Java</span><span>Android</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="memoire">
+  <div class="container">
+    <div class="section-label">Recherche</div>
+    <h2 class="section-title">Mémoire de fin d'études</h2>
+
+    <div class="featured">
+      <span class="featured-badge">Mémoire de recherche · Master 2 MIAGE</span>
+      <h3>Intelligence artificielle responsable</h3>
+      <div class="sub">Soutenu le 5 septembre 2025 · Université Paris Cité, en alternance chez Orange Business</div>
+      <p>
+        <em>« Comment repenser les pratiques de l'intelligence artificielle et accompagner les utilisateurs
+        vers une utilisation responsable et efficace tout en protégeant les organisations ? »</em>
+      </p>
+      <p>
+        Ce mémoire analyse le déploiement et l'intégration responsable de l'IA générative dans les milieux
+        académique et professionnel. Il part d'un double constat : les organisations déploient massivement
+        des outils d'IA sans cadre clair ni accompagnement suffisant, alors que les risques (biais
+        algorithmiques, opacité des décisions, perte de compétences, fuites de données) sont bien réels.
+        Le travail combine analyse théorique, observations de terrain et études de cas pour proposer une
+        vision à la fois critique et pragmatique de l'adoption de l'IA.
+      </p>
+      <div class="feat-cols">
+        <div class="feat-col">
+          <h4>Méthodologie</h4>
+          <ul>
+            <li>Recherche documentaire et revue de littérature</li>
+            <li>Analyse comparative des cadres réglementaires (AI Act européen, RGPD, CNIL ; approches américaine et asiatique)</li>
+            <li>Étude des dérives documentées en milieu académique et organisationnel</li>
+            <li>Études de cas de terrain</li>
+            <li>Proposition de leviers opérationnels</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Leviers proposés</h4>
+          <ul>
+            <li>Gouvernance centralisée de l'IA</li>
+            <li>Conception éthique (Ethics by Design)</li>
+            <li>Transparence des systèmes et des décisions</li>
+            <li>Supervision humaine (human-in-the-loop)</li>
+            <li>Gestion et détection des biais</li>
+            <li>Formation et accompagnement des utilisateurs</li>
+            <li>Suivi et contrôle continus, adossés au cadre AI4People</li>
+          </ul>
+        </div>
+        <div class="feat-col">
+          <h4>Études de cas</h4>
+          <ul>
+            <li><strong>IIT Delhi</strong> — démarche « AI, But Verify » : gouvernance dédiée, divulgation obligatoire, refonte des politiques anti-plagiat, égalité d'accès et formation continue</li>
+            <li><strong>Orange Business</strong> — plateforme d'IA générative souveraine <em>Live Intelligence</em> : conformité RGPD, prompts métiers contextualisés, validation interne, auditabilité et accompagnement systématique des utilisateurs</li>
+            <li>Conclusion : la réussite d'un projet d'IA tient autant à la confiance qu'il inspire et à la clarté de sa gouvernance qu'à sa performance technique</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span>IA générative</span><span>Gouvernance de l'IA</span><span>Éthique</span>
+        <span>AI Act</span><span>RGPD</span><span>Conduite du changement</span>
+        <span>Étude de cas</span><span>Recherche appliquée</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="alt">
+  <div class="container">
+    <div class="section-label">Parcours académique</div>
+    <h2 class="section-title">Formation</h2>
+
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div>
+          <h3>Master MIAGE</h3>
+          <div class="org">Université Paris Cité — Systèmes d'information, BI, gouvernance des données, sécurité informatique</div>
+        </div>
+        <div class="edu-date">2023 — 2025</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3>Licence Informatique et Applications (L3 MIAGE)</h3>
+          <div class="org">Université Paris Cité</div>
+        </div>
+        <div class="edu-date">2021 — 2023</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3>L1 Mathématiques, Informatique, Physique et Ingénierie</h3>
+          <div class="org">CY Cergy Paris Université</div>
+        </div>
+        <div class="edu-date">2020 — 2021</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">Formation continue</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-item"><span class="dot"></span> Google Analytics</div>
+      <div class="cert-item"><span class="dot"></span> Microsoft Power BI</div>
+      <div class="cert-item"><span class="dot"></span> Analyse et visualisation de données en Python</div>
+      <div class="cert-item"><span class="dot"></span> Développez votre première application Android</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-label">Communication</div>
+    <h2 class="section-title">Langues</h2>
+    <div class="lang-grid">
+      <div class="lang-item"><div class="lname">Français</div><div class="llevel">Bilingue</div></div>
+      <div class="lang-item"><div class="lname">Anglais</div><div class="llevel">Professionnel</div></div>
+      <div class="lang-item"><div class="lname">Arabe</div><div class="llevel">Littéraire</div></div>
+      <div class="lang-item"><div class="lname">Kabyle</div><div class="llevel">Langue maternelle</div></div>
+      <div class="lang-item"><div class="lname">Turc</div><div class="llevel">Intermédiaire</div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <h2>Travaillons ensemble</h2>
+    <p>Ouverte aux opportunités en Data Analysis, Business Intelligence, Gestion de projet et Product Ownership.</p>
+    <div class="foot-links">
+      <a class="btn btn-primary" href="mailto:deraisafaa@gmail.com">✉️ deraisafaa@gmail.com</a>
+      <a class="btn btn-secondary" href="tel:0755273129">📞 07 55 27 31 29</a>
+      <a class="btn btn-secondary" href="https://www.linkedin.com/in/safa-derai/" target="_blank" rel="noopener">💼 LinkedIn</a>
+    </div>
+    <div class="foot-note">© 2026 Safa Derai — Portfolio mis à jour au fil de mes expériences et projets.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burgerBtn').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
